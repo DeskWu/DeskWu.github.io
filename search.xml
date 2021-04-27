@@ -782,17 +782,15 @@
     
     
     <entry>
-      <title>Nuxt SEO初体验</title>
-      <link href="article/nuxt-seo-chu-ti-yan/"/>
-      <url>article/nuxt-seo-chu-ti-yan/</url>
+      <title>Nuxt asyncData() 方法详解</title>
+      <link href="article/nuxt-asyncdata-fang-fa-xiang-jie/"/>
+      <url>article/nuxt-asyncdata-fang-fa-xiang-jie/</url>
       
-        <content type="html"><![CDATA[<h1><span id="nuxt-seo初体验">Nuxt SEO初体验</span></h1><ol><li><p>什么是 SEO</p><p>SEO，这个词从宽泛的意义上讲，也叫 SEO优化，也叫网站优化，也叫搜索引擎优化</p><p>SEO，称是：Search Engine Optimization，中文为搜索引擎优化</p><p>说人话就是：怎样让你的网站被更多的网友搜索到</p></li><li><p>Nuxt  SEO 初体验</p><ol><li><p>修改 nuxt.config.js</p><pre class=" language-language-js"><code class="language-language-js">   head: {        title: '跳蚤的 nuxt 学习网站',        meta: [            {charset: 'utf-8'},            {name: 'viewport', content: 'width=device-width, initial-scale=1'},            {hid: 'description', name: 'description', content: '跳蚤的 nuxt 学习网站，淘宝、小红书、知乎'}        ],        link: [ //  favicon，若引用css不会进行打包处理            {rel: 'icon', type: 'image/x-icon', href: '/dog.ico'}        ]   }</code></pre></li><li><p>修改每个页面的</p><pre class=" language-language-js"><code class="language-language-js">head(){    return {      title: '子页面中的标题',      meta: [{        hid: "description",        name: "description",        content: "this is 子页面 描述"      },{        hid: 'viewport',        name: 'viewport',        content: 'width=device-width, initial-scale=1.0'      }]    }  }</code></pre></li></ol></li></ol>]]></content>
+        <content type="html"><![CDATA[<h1><span id="nuxt-asyncdata-方法详解">Nuxt asyncData() 方法详解</span></h1><h4><span id="细节一">细节一：</span></h4><p>​<strong>异步数据 （asyncData方法，限于page页面组件，components中不适用）</strong></p><h4><span id="细节二">细节二：</span></h4>]]></content>
       
       
       
         <tags>
-            
-            <tag> axios </tag>
             
             <tag> Nuxt </tag>
             
@@ -803,11 +801,11 @@
     
     
     <entry>
-      <title>Nuxt asyncData() 方法详解</title>
-      <link href="article/nuxt-asyncdata-fang-fa-xiang-jie/"/>
-      <url>article/nuxt-asyncdata-fang-fa-xiang-jie/</url>
+      <title>Nuxt 快速入门</title>
+      <link href="article/nuxt-kuai-su-ru-men/"/>
+      <url>article/nuxt-kuai-su-ru-men/</url>
       
-        <content type="html"><![CDATA[<h1><span id="nuxt-asyncdata-方法详解">Nuxt asyncData() 方法详解</span></h1><h4><span id="细节一">细节一：</span></h4><p>​<strong>异步数据 （asyncData方法，限于page页面组件，components中不适用）</strong></p><h4><span id="细节二">细节二：</span></h4>]]></content>
+        <content type="html"><![CDATA[<h1><span id="nuxt-快速入门">Nuxt 快速入门</span></h1><ol><li><p>修改 index.vue 下原有的内</p></li><li><p>写三个标签，用于连接到其他页面</p><pre class=" language-language-html"><code class="language-language-html"><template>    <div>        <!--   用于跳转页面     -->        <nuxt-link to="/tb/tb" target="_blank">淘宝</nuxt-link>        <nuxt-link to="/zhihu/zhihu" target="_blank">知乎</nuxt-link>        <nuxt-link to="/xhs/xhs" target="_blank">小红书</nuxt-link>    </div></template></code></pre></li><li><p>编写 tb 页面（nuxt 会自动生成路径：/tb/tb）</p><p><img src="https://img.nbjike.com/jietu/20200517143424.png" alt></p></li><li><p>编写 tb.vue 内相关内容</p><pre class=" language-language-html"><code class="language-language-html"><template>    <div class="tb">        {{ data }}    </div></template></code></pre></li><li><p>运行</p></li></ol>]]></content>
       
       
       
@@ -843,15 +841,17 @@
     
     
     <entry>
-      <title>Nuxt 快速入门</title>
-      <link href="article/nuxt-kuai-su-ru-men/"/>
-      <url>article/nuxt-kuai-su-ru-men/</url>
+      <title>Nuxt SEO初体验</title>
+      <link href="article/nuxt-seo-chu-ti-yan/"/>
+      <url>article/nuxt-seo-chu-ti-yan/</url>
       
-        <content type="html"><![CDATA[<h1><span id="nuxt-快速入门">Nuxt 快速入门</span></h1><ol><li><p>修改 index.vue 下原有的内</p></li><li><p>写三个标签，用于连接到其他页面</p><pre class=" language-language-html"><code class="language-language-html"><template>    <div>        <!--   用于跳转页面     -->        <nuxt-link to="/tb/tb" target="_blank">淘宝</nuxt-link>        <nuxt-link to="/zhihu/zhihu" target="_blank">知乎</nuxt-link>        <nuxt-link to="/xhs/xhs" target="_blank">小红书</nuxt-link>    </div></template></code></pre></li><li><p>编写 tb 页面（nuxt 会自动生成路径：/tb/tb）</p><p><img src="https://img.nbjike.com/jietu/20200517143424.png" alt></p></li><li><p>编写 tb.vue 内相关内容</p><pre class=" language-language-html"><code class="language-language-html"><template>    <div class="tb">        {{ data }}    </div></template></code></pre></li><li><p>运行</p></li></ol>]]></content>
+        <content type="html"><![CDATA[<h1><span id="nuxt-seo初体验">Nuxt SEO初体验</span></h1><ol><li><p>什么是 SEO</p><p>SEO，这个词从宽泛的意义上讲，也叫 SEO优化，也叫网站优化，也叫搜索引擎优化</p><p>SEO，称是：Search Engine Optimization，中文为搜索引擎优化</p><p>说人话就是：怎样让你的网站被更多的网友搜索到</p></li><li><p>Nuxt  SEO 初体验</p><ol><li><p>修改 nuxt.config.js</p><pre class=" language-language-js"><code class="language-language-js">   head: {        title: '跳蚤的 nuxt 学习网站',        meta: [            {charset: 'utf-8'},            {name: 'viewport', content: 'width=device-width, initial-scale=1'},            {hid: 'description', name: 'description', content: '跳蚤的 nuxt 学习网站，淘宝、小红书、知乎'}        ],        link: [ //  favicon，若引用css不会进行打包处理            {rel: 'icon', type: 'image/x-icon', href: '/dog.ico'}        ]   }</code></pre></li><li><p>修改每个页面的</p><pre class=" language-language-js"><code class="language-language-js">head(){    return {      title: '子页面中的标题',      meta: [{        hid: "description",        name: "description",        content: "this is 子页面 描述"      },{        hid: 'viewport',        name: 'viewport',        content: 'width=device-width, initial-scale=1.0'      }]    }  }</code></pre></li></ol></li></ol>]]></content>
       
       
       
         <tags>
+            
+            <tag> axios </tag>
             
             <tag> Nuxt </tag>
             
@@ -961,11 +961,11 @@
     
     
     <entry>
-      <title>SpringCloud学习2.0笔记(二) cloud 技术升级</title>
-      <link href="article/springcloud-xue-xi-2.0-bi-ji-er-cloud-ji-zhu-sheng-ji/"/>
-      <url>article/springcloud-xue-xi-2.0-bi-ji-er-cloud-ji-zhu-sheng-ji/</url>
+      <title>SpringCloud学习2.0笔记(二) 父工程Project空间新建</title>
+      <link href="article/springcloud-xue-xi-2.0-bi-ji-er-fu-gong-cheng-project-kong-jian-xin-jian/"/>
+      <url>article/springcloud-xue-xi-2.0-bi-ji-er-fu-gong-cheng-project-kong-jian-xin-jian/</url>
       
-        <content type="html"><![CDATA[<h1><span id="springcloud学习20笔记二-cloud-技术升级">SpringCloud学习2.0笔记(二) cloud 技术升级</span></h1><h3><span id="cloud-技术升级可替代的技术方案">cloud 技术升级（可替代的技术方案）：</span></h3><p><img src="https://img.nbjike.com/jietu/20200329151752.png" alt></p>]]></content>
+        <content type="html"><![CDATA[<h1><span id="springcloud学习20笔记二-父工程project空间新建">SpringCloud学习2.0笔记(二) 父工程Project空间新建</span></h1>]]></content>
       
       
       
@@ -982,11 +982,11 @@
     
     
     <entry>
-      <title>SpringCloud学习2.0笔记(二) 父工程Project空间新建</title>
-      <link href="article/springcloud-xue-xi-2.0-bi-ji-er-fu-gong-cheng-project-kong-jian-xin-jian/"/>
-      <url>article/springcloud-xue-xi-2.0-bi-ji-er-fu-gong-cheng-project-kong-jian-xin-jian/</url>
+      <title>SpringCloud学习2.0笔记(二) cloud 技术升级</title>
+      <link href="article/springcloud-xue-xi-2.0-bi-ji-er-cloud-ji-zhu-sheng-ji/"/>
+      <url>article/springcloud-xue-xi-2.0-bi-ji-er-cloud-ji-zhu-sheng-ji/</url>
       
-        <content type="html"><![CDATA[<h1><span id="springcloud学习20笔记二-父工程project空间新建">SpringCloud学习2.0笔记(二) 父工程Project空间新建</span></h1>]]></content>
+        <content type="html"><![CDATA[<h1><span id="springcloud学习20笔记二-cloud-技术升级">SpringCloud学习2.0笔记(二) cloud 技术升级</span></h1><h3><span id="cloud-技术升级可替代的技术方案">cloud 技术升级（可替代的技术方案）：</span></h3><p><img src="https://img.nbjike.com/jietu/20200329151752.png" alt></p>]]></content>
       
       
       
@@ -1478,27 +1478,6 @@
     
     
     <entry>
-      <title>Docker 安装redis（配置启动）</title>
-      <link href="article/docker-an-zhuang-redis-pei-zhi-qi-dong/"/>
-      <url>article/docker-an-zhuang-redis-pei-zhi-qi-dong/</url>
-      
-        <content type="html"><![CDATA[<h1><span id="docker-安装redis配置启动">Docker 安装redis（配置启动）</span></h1><ol><li><p>拉取 redis 镜像</p><pre class=" language-language-sh"><code class="language-language-sh">docker pull redis</code></pre></li><li><p>创建redis.conf和相应的文件夹</p><p><a href="http://download.redis.io/redis-stable/redis.conf" target="_blank" rel="noopener">redis官方配置文件</a></p><blockquote><p>记得修改 bind，直接注释或bind 0.0.0.0</p></blockquote></li><li><p>启动redis</p><pre class=" language-language-sh"><code class="language-language-sh">docker run -d -p 6379:6379 \--name redis \-v /home/config/redis/redis.conf:/etc/redis/redis.conf \-v /home/data/redis:/data \redis \redis-server /etc/redis/redis.conf  --appendonly yes</code></pre></li></ol>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 环境搭建 </tag>
-            
-            <tag> redis安装 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Chrome 插件开发(二)manifest.json配置</title>
       <link href="article/chrome-cha-jian-kai-fa-er-manifest.json-pei-zhi/"/>
       <url>article/chrome-cha-jian-kai-fa-er-manifest.json-pei-zhi/</url>
@@ -1512,6 +1491,27 @@
             <tag> 脚本 </tag>
             
             <tag> 插件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Docker 安装redis（配置启动）</title>
+      <link href="article/docker-an-zhuang-redis-pei-zhi-qi-dong/"/>
+      <url>article/docker-an-zhuang-redis-pei-zhi-qi-dong/</url>
+      
+        <content type="html"><![CDATA[<h1><span id="docker-安装redis配置启动">Docker 安装redis（配置启动）</span></h1><ol><li><p>拉取 redis 镜像</p><pre class=" language-language-sh"><code class="language-language-sh">docker pull redis</code></pre></li><li><p>创建redis.conf和相应的文件夹</p><p><a href="http://download.redis.io/redis-stable/redis.conf" target="_blank" rel="noopener">redis官方配置文件</a></p><blockquote><p>记得修改 bind，直接注释或bind 0.0.0.0</p></blockquote></li><li><p>启动redis</p><pre class=" language-language-sh"><code class="language-language-sh">docker run -d -p 6379:6379 \--name redis \-v /home/config/redis/redis.conf:/etc/redis/redis.conf \-v /home/data/redis:/data \redis \redis-server /etc/redis/redis.conf  --appendonly yes</code></pre></li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 环境搭建 </tag>
+            
+            <tag> redis安装 </tag>
             
         </tags>
       
