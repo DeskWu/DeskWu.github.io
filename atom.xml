@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wzzzzzz.com/"/>
-  <updated>2021-04-26T15:32:20.299Z</updated>
+  <updated>2021-04-28T17:54:22.203Z</updated>
   <id>http://www.wzzzzzz.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Redis 主从复制流程</title>
+    <link href="http://www.wzzzzzz.com/yun-wei/2021-04-27-redis-zhu-cong-fu-zhi-liu-cheng/"/>
+    <id>http://www.wzzzzzz.com/yun-wei/2021-04-27-redis-zhu-cong-fu-zhi-liu-cheng/</id>
+    <published>2021-04-27T06:53:44.000Z</published>
+    <updated>2021-04-28T17:54:22.203Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1&gt;&lt;span id=&quot;redis-主从复制流程&quot;&gt;Redis 主从复制流程&lt;/span&gt;&lt;/h1&gt;
+&lt;h3&gt;&lt;span id=&quot;全量复制&quot;&gt;全量复制&lt;/span&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;从 redis
+        
+      
+    
+    </summary>
+    
+      <category term="运维" scheme="http://www.wzzzzzz.com/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="Redis" scheme="http://www.wzzzzzz.com/tags/Redis/"/>
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -554,34 +584,6 @@
       <category term="并发" scheme="http://www.wzzzzzz.com/tags/%E5%B9%B6%E5%8F%91/"/>
     
       <category term="并行" scheme="http://www.wzzzzzz.com/tags/%E5%B9%B6%E8%A1%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java 数组</title>
-    <link href="http://www.wzzzzzz.com/java-ji-chu/java-shu-zu/"/>
-    <id>http://www.wzzzzzz.com/java-ji-chu/java-shu-zu/</id>
-    <published>2020-11-15T05:38:50.000Z</published>
-    <updated>2021-04-26T15:32:20.292Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1&gt;&lt;span id=&quot;java-数组&quot;&gt;Java 数组&lt;/span&gt;&lt;/h1&gt;
-&lt;h4&gt;&lt;span id=&quot;java-中数组是对象证明&quot;&gt;Java 中数组是对象，证明：&lt;/span&gt;&lt;/h4&gt;
-&lt;pre class=&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Java基础" scheme="http://www.wzzzzzz.com/categories/Java%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="数组" scheme="http://www.wzzzzzz.com/tags/%E6%95%B0%E7%BB%84/"/>
     
   </entry>
   

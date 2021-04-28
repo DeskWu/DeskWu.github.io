@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Redis 主从复制流程</title>
+      <link href="yun-wei/2021-04-27-redis-zhu-cong-fu-zhi-liu-cheng/"/>
+      <url>yun-wei/2021-04-27-redis-zhu-cong-fu-zhi-liu-cheng/</url>
+      
+        <content type="html"><![CDATA[<h1><span id="redis-主从复制流程">Redis 主从复制流程</span></h1><h3><span id="全量复制">全量复制</span></h3><ol><li><p>从 redis 向主发送全量复制命令(从服务器-&gt;主服务器)</p><pre><code>psync ? -1</code></pre></li><li><p>主服务器-&gt;从服务器</p><pre><code>fullsync runid offset</code></pre></li><li><p>从服务器</p><pre><code>保存 runid offset</code></pre></li><li><p>主服务器</p><pre><code>执行bgsave生成rdb</code></pre></li><li><p>主服务器-&gt;从服务器</p><pre><code>发送rdb</code></pre></li><li><p>从服务器</p><pre><code>清空自身老数据</code></pre></li><li><p>从服务器</p><pre><code>加载主服务器数据</code></pre><p>如下图所示：</p></li></ol><p><img src="https://img.nbjike.com/jietu/20210427230220.png?from=tz" alt></p><p>问题：</p><ol><li><p>rdb 大小可以多大</p><p>RDB文件大小 &lt; RDB分析工具显示的内存大小 &lt; used_memory_human</p></li><li><p>为什么主从复制的时候不同步 aof 文件</p></li><li><p>redis 在主从复制的时候，如何处理增量数据</p></li><li><p>网络不佳，出现网络中断，slave 不工作</p><ol><li><p>原因</p><p>复制缓存区过小，断网后 slave 的 offset 越界，触发全量复制</p></li><li><p>最终结果</p><p>slave 反复的进行全量复制，stop of words</p></li><li><p>修改方案</p><p>修改复制缓冲区的大小</p></li></ol></li><li><p>多个 slave 获取相同数据不同步</p><ol><li>优化主从网络</li><li>监控主从节点的延迟</li><li></li></ol></li><li><p>主从同步会导致的问题</p><ol><li>复制数据延迟</li><li>读到过期的数据（由于 slave 无权限删除过期的 key，所以会导致客户端从 slave 中读取到过期的 key）</li></ol></li><li><p>主从配置不一致</p><ol><li>例如maxmemory不一致，导致主从不一致</li></ol></li><li><p>规避全量复制</p><ol><li><p>第一次全量复制</p><p>第一次全量复制不可能避免（减少分片maxmemory, 在低峰的时候进行）</p></li><li><p>节点运行ID不匹配</p><p>redis每次启动时，会有一个run_id，slave会保存master的run_id, 如果master的run_id发生了变化的话，那么就会触发一个全量复制</p></li><li><p>复制积压缓冲区（repl_back_buffer）不足</p><p>复制缓冲区,又名复制积压缓冲区,是一个先进先出(FIFO)的队列,用于存储服务器执行过的命令（需要查阅资料，目前不清楚是存储文件，还是命令）,每次传播命令,master都会将传播的命令记录下来,并存储在复制缓冲区。</p></li></ol></li></ol><p>redis 的 master 在 shotdown 的时候，会将 repl-id（41位） 和 repl-offset 存储到 rdb 文件中，用于重启恢复</p><p>redis 主从模式下，当主挂了，主不能写数据，不能进行同步数据，但是从节点，还是可以进行读。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 运维 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="article/jvm-can-shu-ce-shi/"/>
       <url>article/jvm-can-shu-ce-shi/</url>
@@ -782,34 +807,17 @@
     
     
     <entry>
-      <title>Nuxt asyncData() 方法详解</title>
-      <link href="article/nuxt-asyncdata-fang-fa-xiang-jie/"/>
-      <url>article/nuxt-asyncdata-fang-fa-xiang-jie/</url>
+      <title>Nuxt SEO初体验</title>
+      <link href="article/nuxt-seo-chu-ti-yan/"/>
+      <url>article/nuxt-seo-chu-ti-yan/</url>
       
-        <content type="html"><![CDATA[<h1><span id="nuxt-asyncdata-方法详解">Nuxt asyncData() 方法详解</span></h1><h4><span id="细节一">细节一：</span></h4><p>​<strong>异步数据 （asyncData方法，限于page页面组件，components中不适用）</strong></p><h4><span id="细节二">细节二：</span></h4>]]></content>
+        <content type="html"><![CDATA[<h1><span id="nuxt-seo初体验">Nuxt SEO初体验</span></h1><ol><li><p>什么是 SEO</p><p>SEO，这个词从宽泛的意义上讲，也叫 SEO优化，也叫网站优化，也叫搜索引擎优化</p><p>SEO，称是：Search Engine Optimization，中文为搜索引擎优化</p><p>说人话就是：怎样让你的网站被更多的网友搜索到</p></li><li><p>Nuxt  SEO 初体验</p><ol><li><p>修改 nuxt.config.js</p><pre class=" language-language-js"><code class="language-language-js">   head: {        title: '跳蚤的 nuxt 学习网站',        meta: [            {charset: 'utf-8'},            {name: 'viewport', content: 'width=device-width, initial-scale=1'},            {hid: 'description', name: 'description', content: '跳蚤的 nuxt 学习网站，淘宝、小红书、知乎'}        ],        link: [ //  favicon，若引用css不会进行打包处理            {rel: 'icon', type: 'image/x-icon', href: '/dog.ico'}        ]   }</code></pre></li><li><p>修改每个页面的</p><pre class=" language-language-js"><code class="language-language-js">head(){    return {      title: '子页面中的标题',      meta: [{        hid: "description",        name: "description",        content: "this is 子页面 描述"      },{        hid: 'viewport',        name: 'viewport',        content: 'width=device-width, initial-scale=1.0'      }]    }  }</code></pre></li></ol></li></ol>]]></content>
       
       
       
         <tags>
             
-            <tag> Nuxt </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Nuxt 快速入门</title>
-      <link href="article/nuxt-kuai-su-ru-men/"/>
-      <url>article/nuxt-kuai-su-ru-men/</url>
-      
-        <content type="html"><![CDATA[<h1><span id="nuxt-快速入门">Nuxt 快速入门</span></h1><ol><li><p>修改 index.vue 下原有的内</p></li><li><p>写三个标签，用于连接到其他页面</p><pre class=" language-language-html"><code class="language-language-html"><template>    <div>        <!--   用于跳转页面     -->        <nuxt-link to="/tb/tb" target="_blank">淘宝</nuxt-link>        <nuxt-link to="/zhihu/zhihu" target="_blank">知乎</nuxt-link>        <nuxt-link to="/xhs/xhs" target="_blank">小红书</nuxt-link>    </div></template></code></pre></li><li><p>编写 tb 页面（nuxt 会自动生成路径：/tb/tb）</p><p><img src="https://img.nbjike.com/jietu/20200517143424.png" alt></p></li><li><p>编写 tb.vue 内相关内容</p><pre class=" language-language-html"><code class="language-language-html"><template>    <div class="tb">        {{ data }}    </div></template></code></pre></li><li><p>运行</p></li></ol>]]></content>
-      
-      
-      
-        <tags>
+            <tag> axios </tag>
             
             <tag> Nuxt </tag>
             
@@ -841,17 +849,34 @@
     
     
     <entry>
-      <title>Nuxt SEO初体验</title>
-      <link href="article/nuxt-seo-chu-ti-yan/"/>
-      <url>article/nuxt-seo-chu-ti-yan/</url>
+      <title>Nuxt 快速入门</title>
+      <link href="article/nuxt-kuai-su-ru-men/"/>
+      <url>article/nuxt-kuai-su-ru-men/</url>
       
-        <content type="html"><![CDATA[<h1><span id="nuxt-seo初体验">Nuxt SEO初体验</span></h1><ol><li><p>什么是 SEO</p><p>SEO，这个词从宽泛的意义上讲，也叫 SEO优化，也叫网站优化，也叫搜索引擎优化</p><p>SEO，称是：Search Engine Optimization，中文为搜索引擎优化</p><p>说人话就是：怎样让你的网站被更多的网友搜索到</p></li><li><p>Nuxt  SEO 初体验</p><ol><li><p>修改 nuxt.config.js</p><pre class=" language-language-js"><code class="language-language-js">   head: {        title: '跳蚤的 nuxt 学习网站',        meta: [            {charset: 'utf-8'},            {name: 'viewport', content: 'width=device-width, initial-scale=1'},            {hid: 'description', name: 'description', content: '跳蚤的 nuxt 学习网站，淘宝、小红书、知乎'}        ],        link: [ //  favicon，若引用css不会进行打包处理            {rel: 'icon', type: 'image/x-icon', href: '/dog.ico'}        ]   }</code></pre></li><li><p>修改每个页面的</p><pre class=" language-language-js"><code class="language-language-js">head(){    return {      title: '子页面中的标题',      meta: [{        hid: "description",        name: "description",        content: "this is 子页面 描述"      },{        hid: 'viewport',        name: 'viewport',        content: 'width=device-width, initial-scale=1.0'      }]    }  }</code></pre></li></ol></li></ol>]]></content>
+        <content type="html"><![CDATA[<h1><span id="nuxt-快速入门">Nuxt 快速入门</span></h1><ol><li><p>修改 index.vue 下原有的内</p></li><li><p>写三个标签，用于连接到其他页面</p><pre class=" language-language-html"><code class="language-language-html"><template>    <div>        <!--   用于跳转页面     -->        <nuxt-link to="/tb/tb" target="_blank">淘宝</nuxt-link>        <nuxt-link to="/zhihu/zhihu" target="_blank">知乎</nuxt-link>        <nuxt-link to="/xhs/xhs" target="_blank">小红书</nuxt-link>    </div></template></code></pre></li><li><p>编写 tb 页面（nuxt 会自动生成路径：/tb/tb）</p><p><img src="https://img.nbjike.com/jietu/20200517143424.png" alt></p></li><li><p>编写 tb.vue 内相关内容</p><pre class=" language-language-html"><code class="language-language-html"><template>    <div class="tb">        {{ data }}    </div></template></code></pre></li><li><p>运行</p></li></ol>]]></content>
       
       
       
         <tags>
             
-            <tag> axios </tag>
+            <tag> Nuxt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Nuxt asyncData() 方法详解</title>
+      <link href="article/nuxt-asyncdata-fang-fa-xiang-jie/"/>
+      <url>article/nuxt-asyncdata-fang-fa-xiang-jie/</url>
+      
+        <content type="html"><![CDATA[<h1><span id="nuxt-asyncdata-方法详解">Nuxt asyncData() 方法详解</span></h1><h4><span id="细节一">细节一：</span></h4><p>​<strong>异步数据 （asyncData方法，限于page页面组件，components中不适用）</strong></p><h4><span id="细节二">细节二：</span></h4>]]></content>
+      
+      
+      
+        <tags>
             
             <tag> Nuxt </tag>
             
@@ -881,6 +906,25 @@
     
     
     <entry>
+      <title>Nuxt 环境搭建</title>
+      <link href="article/nuxt-huan-jing-da-jian/"/>
+      <url>article/nuxt-huan-jing-da-jian/</url>
+      
+        <content type="html"><![CDATA[<h1><span id="nuxt-环境搭建">Nuxt 环境搭建</span></h1><h3><span id="一-通过-vue-安装-nuxt-项目">一、通过 vue 安装 Nuxt 项目</span></h3><ol><li><p>安装 vue 环境</p><pre class=" language-language-sh"><code class="language-language-sh">npm install vue-cli -g</code></pre></li><li><p>使用vue安装 nuxt</p><pre class=" language-language-sh"><code class="language-language-sh">vue init nuxt/starter</code></pre></li><li><p>使用npm install安装依赖包</p><pre class=" language-language-sh"><code class="language-language-sh">npm install</code></pre><p>出现如下图所示：（安装成功）</p><img src="https://img.nbjike.com/jietu/20200414005416.png" style="zoom:50%;"></li><li><p>使用npm run dev 启动服务</p><pre class=" language-language-sh"><code class="language-language-sh">npm run dev</code></pre><p>出现如下图所示：启动成功</p><img src="https://img.nbjike.com/jietu/20200414011243.png" style="zoom:50%;"></li></ol><h3><span id="二-通过-nuxt-脚手架安装">二、通过 Nuxt 脚手架安装</span></h3><p>安装 Nuxt 脚手架</p><pre class=" language-language-sh"><code class="language-language-sh">npm i create-nuxt-app -gcreate-nuxt-app my-nuxt-democd my-nuxt-demonpm run dev</code></pre><p>出现如下图所示：启动成功</p><img src="https://img.nbjike.com/jietu/20200414011243.png" style="zoom:50%;">]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Nuxt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Npm 卸载eslint</title>
       <link href="article/npm-xie-zai-eslint/"/>
       <url>article/npm-xie-zai-eslint/</url>
@@ -894,25 +938,6 @@
             <tag> Node </tag>
             
             <tag> Npm </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Nuxt 环境搭建</title>
-      <link href="article/nuxt-huan-jing-da-jian/"/>
-      <url>article/nuxt-huan-jing-da-jian/</url>
-      
-        <content type="html"><![CDATA[<h1><span id="nuxt-环境搭建">Nuxt 环境搭建</span></h1><h3><span id="一-通过-vue-安装-nuxt-项目">一、通过 vue 安装 Nuxt 项目</span></h3><ol><li><p>安装 vue 环境</p><pre class=" language-language-sh"><code class="language-language-sh">npm install vue-cli -g</code></pre></li><li><p>使用vue安装 nuxt</p><pre class=" language-language-sh"><code class="language-language-sh">vue init nuxt/starter</code></pre></li><li><p>使用npm install安装依赖包</p><pre class=" language-language-sh"><code class="language-language-sh">npm install</code></pre><p>出现如下图所示：（安装成功）</p><img src="https://img.nbjike.com/jietu/20200414005416.png" style="zoom:50%;"></li><li><p>使用npm run dev 启动服务</p><pre class=" language-language-sh"><code class="language-language-sh">npm run dev</code></pre><p>出现如下图所示：启动成功</p><img src="https://img.nbjike.com/jietu/20200414011243.png" style="zoom:50%;"></li></ol><h3><span id="二-通过-nuxt-脚手架安装">二、通过 Nuxt 脚手架安装</span></h3><p>安装 Nuxt 脚手架</p><pre class=" language-language-sh"><code class="language-language-sh">npm i create-nuxt-app -gcreate-nuxt-app my-nuxt-democd my-nuxt-demonpm run dev</code></pre><p>出现如下图所示：启动成功</p><img src="https://img.nbjike.com/jietu/20200414011243.png" style="zoom:50%;">]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> Nuxt </tag>
             
         </tags>
       
@@ -961,11 +986,11 @@
     
     
     <entry>
-      <title>SpringCloud学习2.0笔记(二) 父工程Project空间新建</title>
-      <link href="article/springcloud-xue-xi-2.0-bi-ji-er-fu-gong-cheng-project-kong-jian-xin-jian/"/>
-      <url>article/springcloud-xue-xi-2.0-bi-ji-er-fu-gong-cheng-project-kong-jian-xin-jian/</url>
+      <title>SpringCloud学习2.0笔记(二) cloud 技术升级</title>
+      <link href="article/springcloud-xue-xi-2.0-bi-ji-er-cloud-ji-zhu-sheng-ji/"/>
+      <url>article/springcloud-xue-xi-2.0-bi-ji-er-cloud-ji-zhu-sheng-ji/</url>
       
-        <content type="html"><![CDATA[<h1><span id="springcloud学习20笔记二-父工程project空间新建">SpringCloud学习2.0笔记(二) 父工程Project空间新建</span></h1>]]></content>
+        <content type="html"><![CDATA[<h1><span id="springcloud学习20笔记二-cloud-技术升级">SpringCloud学习2.0笔记(二) cloud 技术升级</span></h1><h3><span id="cloud-技术升级可替代的技术方案">cloud 技术升级（可替代的技术方案）：</span></h3><p><img src="https://img.nbjike.com/jietu/20200329151752.png" alt></p>]]></content>
       
       
       
@@ -982,11 +1007,11 @@
     
     
     <entry>
-      <title>SpringCloud学习2.0笔记(二) cloud 技术升级</title>
-      <link href="article/springcloud-xue-xi-2.0-bi-ji-er-cloud-ji-zhu-sheng-ji/"/>
-      <url>article/springcloud-xue-xi-2.0-bi-ji-er-cloud-ji-zhu-sheng-ji/</url>
+      <title>SpringCloud学习2.0笔记(二) 父工程Project空间新建</title>
+      <link href="article/springcloud-xue-xi-2.0-bi-ji-er-fu-gong-cheng-project-kong-jian-xin-jian/"/>
+      <url>article/springcloud-xue-xi-2.0-bi-ji-er-fu-gong-cheng-project-kong-jian-xin-jian/</url>
       
-        <content type="html"><![CDATA[<h1><span id="springcloud学习20笔记二-cloud-技术升级">SpringCloud学习2.0笔记(二) cloud 技术升级</span></h1><h3><span id="cloud-技术升级可替代的技术方案">cloud 技术升级（可替代的技术方案）：</span></h3><p><img src="https://img.nbjike.com/jietu/20200329151752.png" alt></p>]]></content>
+        <content type="html"><![CDATA[<h1><span id="springcloud学习20笔记二-父工程project空间新建">SpringCloud学习2.0笔记(二) 父工程Project空间新建</span></h1>]]></content>
       
       
       
@@ -1478,27 +1503,6 @@
     
     
     <entry>
-      <title>Chrome 插件开发(二)manifest.json配置</title>
-      <link href="article/chrome-cha-jian-kai-fa-er-manifest.json-pei-zhi/"/>
-      <url>article/chrome-cha-jian-kai-fa-er-manifest.json-pei-zhi/</url>
-      
-        <content type="html"><![CDATA[<h1><span id="chrome-插件开发二manifestjson配置">Chrome 插件开发(二)manifest.json配置</span></h1><h3><span id="manifestjson-配置说明">manifest.json 配置说明：</span></h3><pre class=" language-language-json"><code class="language-language-json">{  "manifest_version": 2,  "name": "插件名称",  "description": "插件描述",  "version": "1.0.0",  "background": {    "scripts": [      "js/axios.min.js",      "js/background.js"    ]  },  "permissions": [    "contextMenus",    "tabs",    "cookies",    "storage",    "*://*/*"  ],  "content_scripts": [    {      "matches": [        "*://star.toutiao.com/*"      ],      "js": [        "js/axios.min.js",        "js/contentscripts.js"      ],      "run_at": "document_end"    }  ],  "browser_action": {    "default_icon": "logo.png",    "default_title": "插件描述",    "default_popup": "popup.html"  },  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"}</code></pre>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 脚本 </tag>
-            
-            <tag> 插件 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Docker 安装redis（配置启动）</title>
       <link href="article/docker-an-zhuang-redis-pei-zhi-qi-dong/"/>
       <url>article/docker-an-zhuang-redis-pei-zhi-qi-dong/</url>
@@ -1512,6 +1516,27 @@
             <tag> 环境搭建 </tag>
             
             <tag> redis安装 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Chrome 插件开发(二)manifest.json配置</title>
+      <link href="article/chrome-cha-jian-kai-fa-er-manifest.json-pei-zhi/"/>
+      <url>article/chrome-cha-jian-kai-fa-er-manifest.json-pei-zhi/</url>
+      
+        <content type="html"><![CDATA[<h1><span id="chrome-插件开发二manifestjson配置">Chrome 插件开发(二)manifest.json配置</span></h1><h3><span id="manifestjson-配置说明">manifest.json 配置说明：</span></h3><pre class=" language-language-json"><code class="language-language-json">{  "manifest_version": 2,  "name": "插件名称",  "description": "插件描述",  "version": "1.0.0",  "background": {    "scripts": [      "js/axios.min.js",      "js/background.js"    ]  },  "permissions": [    "contextMenus",    "tabs",    "cookies",    "storage",    "*://*/*"  ],  "content_scripts": [    {      "matches": [        "*://star.toutiao.com/*"      ],      "js": [        "js/axios.min.js",        "js/contentscripts.js"      ],      "run_at": "document_end"    }  ],  "browser_action": {    "default_icon": "logo.png",    "default_title": "插件描述",    "default_popup": "popup.html"  },  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"}</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 脚本 </tag>
+            
+            <tag> 插件 </tag>
             
         </tags>
       
@@ -2174,11 +2199,11 @@
     
     
     <entry>
-      <title>Mysql 内置函数</title>
-      <link href="article/mysql-nei-zhi-han-shu/"/>
-      <url>article/mysql-nei-zhi-han-shu/</url>
+      <title>Mysql 执行sql文件</title>
+      <link href="article/mysql-zhi-xing-sql-wen-jian/"/>
+      <url>article/mysql-zhi-xing-sql-wen-jian/</url>
       
-        <content type="html"><![CDATA[<h1><span id="mysql-内置函数">Mysql 内置函数</span></h1><pre class=" language-language-mysql"><code class="language-language-mysql"># 查看当前 mysql 有多少客户端连接show PROCESSLIST# 查看当前数据库所有表的状态show table statusSHOW TABLE STATUS    [{FROM | IN} db_name]    [LIKE 'pattern' | WHERE expr]#当表的平均长度不同时，平均长度短的查询快（相同数据量的情况下）</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1><span id="mysql-执行sql文件">Mysql 执行sql文件</span></h1><pre class=" language-language-sh"><code class="language-language-sh">#常用source 命令#进入mysql数据库控制台，如mysql -u root -pmysql>use 数据库名称#然后使用source命令，后面参数为脚本文件(如这里用到的.sql)mysql>source 路径加/dbname.sql</code></pre>]]></content>
       
       
       
@@ -2193,11 +2218,11 @@
     
     
     <entry>
-      <title>Mysql 执行sql文件</title>
-      <link href="article/mysql-zhi-xing-sql-wen-jian/"/>
-      <url>article/mysql-zhi-xing-sql-wen-jian/</url>
+      <title>Mysql 内置函数</title>
+      <link href="article/mysql-nei-zhi-han-shu/"/>
+      <url>article/mysql-nei-zhi-han-shu/</url>
       
-        <content type="html"><![CDATA[<h1><span id="mysql-执行sql文件">Mysql 执行sql文件</span></h1><pre class=" language-language-sh"><code class="language-language-sh">#常用source 命令#进入mysql数据库控制台，如mysql -u root -pmysql>use 数据库名称#然后使用source命令，后面参数为脚本文件(如这里用到的.sql)mysql>source 路径加/dbname.sql</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1><span id="mysql-内置函数">Mysql 内置函数</span></h1><pre class=" language-language-mysql"><code class="language-language-mysql"># 查看当前 mysql 有多少客户端连接show PROCESSLIST# 查看当前数据库所有表的状态show table statusSHOW TABLE STATUS    [{FROM | IN} db_name]    [LIKE 'pattern' | WHERE expr]#当表的平均长度不同时，平均长度短的查询快（相同数据量的情况下）</code></pre>]]></content>
       
       
       
