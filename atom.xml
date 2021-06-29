@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wzzzzzz.com/"/>
-  <updated>2021-04-28T17:54:22.203Z</updated>
+  <updated>2021-05-22T16:18:40.046Z</updated>
   <id>http://www.wzzzzzz.com/</id>
   
   <author>
@@ -15,6 +15,118 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>小程序开发——Flex布局</title>
+    <link href="http://www.wzzzzzz.com/xiao-cheng-xu/2021-05-10-xiao-cheng-xu-kai-fa-flex-bu-ju/"/>
+    <id>http://www.wzzzzzz.com/xiao-cheng-xu/2021-05-10-xiao-cheng-xu-kai-fa-flex-bu-ju/</id>
+    <published>2021-05-10T04:43:30.000Z</published>
+    <updated>2021-05-22T16:18:40.046Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="小程序" scheme="http://www.wzzzzzz.com/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+    
+      <category term="小程序" scheme="http://www.wzzzzzz.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小程序开发——表单验证</title>
+    <link href="http://www.wzzzzzz.com/xiao-cheng-xu/2021-05-10-xiao-cheng-xu-kai-fa/"/>
+    <id>http://www.wzzzzzz.com/xiao-cheng-xu/2021-05-10-xiao-cheng-xu-kai-fa/</id>
+    <published>2021-05-10T04:33:40.000Z</published>
+    <updated>2021-05-10T05:42:05.459Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1&gt;&lt;span id=&quot;小程序开发表单验证&quot;&gt;小程序开发——表单验证&lt;/span&gt;&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;// 获取表单中的值
+let fromdata = e.detail.value;
+
+if (fromdata.xxx === xxxxx) {
+
+		//
+        
+      
+    
+    </summary>
+    
+      <category term="小程序" scheme="http://www.wzzzzzz.com/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+    
+      <category term="小程序" scheme="http://www.wzzzzzz.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AOP终止原方法的执行</title>
+    <link href="http://www.wzzzzzz.com/spring/2021-05-01-aop-zhong-zhi-yuan-fang-fa-de-zhi-xing/"/>
+    <id>http://www.wzzzzzz.com/spring/2021-05-01-aop-zhong-zhi-yuan-fang-fa-de-zhi-xing/</id>
+    <published>2021-04-30T17:57:13.000Z</published>
+    <updated>2021-04-28T18:04:54.457Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="Spring" scheme="http://www.wzzzzzz.com/categories/Spring/"/>
+    
+    
+      <category term="AOP" scheme="http://www.wzzzzzz.com/tags/AOP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis cluster 集群</title>
+    <link href="http://www.wzzzzzz.com/yun-wei/2021-04-29-redis-cluster-ji-qun/"/>
+    <id>http://www.wzzzzzz.com/yun-wei/2021-04-29-redis-cluster-ji-qun/</id>
+    <published>2021-04-28T17:57:13.000Z</published>
+    <updated>2021-05-10T05:30:34.752Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1&gt;&lt;span id=&quot;redis-cluster-集群&quot;&gt;Redis cluster 集群&lt;/span&gt;&lt;/h1&gt;
+&lt;h3&gt;&lt;span id=&quot;一致性哈希&quot;&gt;一致性哈希&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="运维" scheme="http://www.wzzzzzz.com/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="Redis" scheme="http://www.wzzzzzz.com/tags/Redis/"/>
+    
+  </entry>
   
   <entry>
     <title>Redis 主从复制流程</title>
@@ -465,125 +577,6 @@
       <category term="并发" scheme="http://www.wzzzzzz.com/tags/%E5%B9%B6%E5%8F%91/"/>
     
       <category term="多线程" scheme="http://www.wzzzzzz.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mybatis 源码（一）</title>
-    <link href="http://www.wzzzzzz.com/mybatis/2020-11-27-mybatis-yuan-ma-yi/"/>
-    <id>http://www.wzzzzzz.com/mybatis/2020-11-27-mybatis-yuan-ma-yi/</id>
-    <published>2020-11-27T14:57:10.000Z</published>
-    <updated>2020-11-27T15:06:02.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1&gt;&lt;span id=&quot;mybatis-源码一&quot;&gt;Mybatis 源码（一）&lt;/span&gt;&lt;/h1&gt;
-&lt;p&gt;MapperMethod 有两个内容部类：&lt;/p&gt;
-&lt;p&gt;SqlCommand 是 MapperMethod
-        
-      
-    
-    </summary>
-    
-      <category term="Mybatis" scheme="http://www.wzzzzzz.com/categories/Mybatis/"/>
-    
-    
-      <category term="Mybatis" scheme="http://www.wzzzzzz.com/tags/Mybatis/"/>
-    
-      <category term="源码" scheme="http://www.wzzzzzz.com/tags/%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring MVC中的Controller是Serlvet吗？</title>
-    <link href="http://www.wzzzzzz.com/spring/2020-11-23-spring-mvc-zhong-de-controller-shi-serlvet-ma/"/>
-    <id>http://www.wzzzzzz.com/spring/2020-11-23-spring-mvc-zhong-de-controller-shi-serlvet-ma/</id>
-    <published>2020-11-23T13:28:21.000Z</published>
-    <updated>2020-11-23T14:58:42.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1&gt;&lt;span id=&quot;spring-mvc中的controller是serlvet吗&quot;&gt;Spring MVC中的Controller是Serlvet吗？&lt;/span&gt;&lt;/h1&gt;
-&lt;p&gt;不是。&lt;/p&gt;
-&lt;p&gt;Controller 是一个处理请求的 Java bean
-        
-      
-    
-    </summary>
-    
-      <category term="Spring" scheme="http://www.wzzzzzz.com/categories/Spring/"/>
-    
-    
-      <category term="SpringMVC" scheme="http://www.wzzzzzz.com/tags/SpringMVC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mysql 自增 id 的问题</title>
-    <link href="http://www.wzzzzzz.com/mysql/2020-11-23-mysql-zi-zeng-id-de-wen-ti/"/>
-    <id>http://www.wzzzzzz.com/mysql/2020-11-23-mysql-zi-zeng-id-de-wen-ti/</id>
-    <published>2020-11-23T08:18:50.000Z</published>
-    <updated>2020-11-23T14:59:00.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1&gt;&lt;span id=&quot;mysql-自增-id-的问题&quot;&gt;Mysql 自增 id 的问题&lt;/span&gt;&lt;/h1&gt;
-&lt;p&gt;mysql 自增 id 的问题&lt;/p&gt;
-&lt;p&gt;先设置id&lt;/p&gt;
-&lt;p&gt;再删除表（delete
-        
-      
-    
-    </summary>
-    
-      <category term="Mysql" scheme="http://www.wzzzzzz.com/categories/Mysql/"/>
-    
-    
-      <category term="Mysql" scheme="http://www.wzzzzzz.com/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>进程和线程的关系</title>
-    <link href="http://www.wzzzzzz.com/cao-zuo-xi-tong/2020-11-22-jin-cheng-he-xian-cheng-de-guan-xi/"/>
-    <id>http://www.wzzzzzz.com/cao-zuo-xi-tong/2020-11-22-jin-cheng-he-xian-cheng-de-guan-xi/</id>
-    <published>2020-11-22T13:57:50.000Z</published>
-    <updated>2020-11-23T01:30:37.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-      <category term="操作系统" scheme="http://www.wzzzzzz.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="进程" scheme="http://www.wzzzzzz.com/tags/%E8%BF%9B%E7%A8%8B/"/>
-    
-      <category term="线程" scheme="http://www.wzzzzzz.com/tags/%E7%BA%BF%E7%A8%8B/"/>
-    
-      <category term="并发" scheme="http://www.wzzzzzz.com/tags/%E5%B9%B6%E5%8F%91/"/>
-    
-      <category term="并行" scheme="http://www.wzzzzzz.com/tags/%E5%B9%B6%E8%A1%8C/"/>
     
   </entry>
   
